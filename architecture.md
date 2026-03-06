@@ -4,30 +4,18 @@
 
 Cluster HPC complet déployé sur Docker Compose simulant un environnement de production.
 
-```
-┌─────────────────────────────────────────────────────┐
-│                     Réseau Docker                    │
-│                                                      │
-│  ┌─────────────┐        ┌──────────────────────┐    │
-│  │  slurmctld  │◄──────►│      slurmdbd        │    │
-│  │  (scheduler)│        │   (comptabilité)     │    │
-│  └──────┬──────┘        └──────────┬───────────┘    │
-│         │                          │                 │
-│         │                   ┌──────▼───────┐         │
-│         │                   │    mysql     │         │
-│         │                   │  (base de   │         │
-│         │                   │   données)  │         │
-│         │                   └─────────────┘         │
-│         │                                            │
-│    ┌────▼──────────────────────┐                    │
-│    │                           │                    │
-│  ┌─▼──────┐              ┌─────▼──┐                 │
-│  │   c1   │              │   c2   │                 │
-│  │ (nœud  │              │ (nœud  │                 │
-│  │calcul) │              │calcul) │                 │
-│  └────────┘              └────────┘                 │
-│                                                      │
-└─────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    slurmctld["🖥️ slurmctld\n(scheduler + login)"]
+    slurmdbd["📊 slurmdbd\n(comptabilité)"]
+    mysql["🗄️ mysql\n(base de données)"]
+    c1["⚙️ c1\n(nœud de calcul)"]
+    c2["⚙️ c2\n(nœud de calcul)"]
+
+    slurmctld <--> slurmdbd
+    slurmdbd --> mysql
+    slurmctld --> c1
+    slurmctld --> c2
 ```
 
 ## Composants
@@ -61,11 +49,30 @@ Cluster HPC complet déployé sur Docker Compose simulant un environnement de pr
 
 ## Système de priorités
 
+```mermaid
+graph LR
+    A["Priorité finale"] --> B["Age\n(temps d'attente)"]
+    A --> C["Fairshare\n(consommation passée)"]
+    A --> D["JobSize\n(taille du job)"]
+```
+
 ```
 PriorityType=priority/multifactor
 PriorityWeightAge=1000        # récompense les jobs qui attendent
 PriorityWeightFairshare=1000  # pénalise les gros consommateurs
 PriorityWeightJobSize=1000    # favorise les petits jobs
+```
+
+## Cycle de vie d'un job
+
+```mermaid
+stateDiagram-v2
+    [*] --> PENDING : sbatch
+    PENDING --> RUNNING : ressources disponibles
+    RUNNING --> COMPLETED : succès
+    RUNNING --> FAILED : erreur
+    PENDING --> CANCELLED : scancel
+    RUNNING --> CANCELLED : scancel
 ```
 
 ## Ce qui a été pratiqué
