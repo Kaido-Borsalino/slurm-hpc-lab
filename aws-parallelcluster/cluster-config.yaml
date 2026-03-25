@@ -1,0 +1,29 @@
+Region: us-east-1
+Image:
+  Os: alinux2023
+HeadNode:
+  InstanceType: t3.micro
+  Networking:
+    SubnetId: subnet-093482cccdcf63462
+  Ssh:
+    KeyName: parallelcluster-key
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+  - Name: queue1
+    ComputeResources:
+    - Name: c5nlarge
+      Instances:
+      - InstanceType: c5n.large
+      MinCount: 0
+      MaxCount: 2
+    Networking:
+      SubnetIds:
+      - subnet-0a98304309ab93375
+SharedStorage:
+  - MountDir: /lustre
+    Name: LustreStorage
+    StorageType: FsxLustre
+    FsxLustreSettings:
+      StorageCapacity: 1200
+      DeploymentType: SCRATCH_2
