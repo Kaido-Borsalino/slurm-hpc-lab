@@ -1,0 +1,11 @@
+groups:
+  - name: memory
+    rules:
+      - alert: MemoryLow
+        expr: node_memory_MemAvailable_bytes/1024/1024/1024 < 8
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Mémoire faible sur {{ $labels.instance }}"
+          description: "Mémoire disponible : {{ $value }} GB"
