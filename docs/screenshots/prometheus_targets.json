@@ -1,0 +1,57 @@
+{
+    "status": "success",
+    "data": {
+        "activeTargets": [
+            {
+                "discoveredLabels": {
+                    "__address__": "c1:9100",
+                    "__metrics_path__": "/metrics",
+                    "__scheme__": "http",
+                    "__scrape_interval__": "15s",
+                    "__scrape_timeout__": "10s",
+                    "job": "node_exporter"
+                },
+                "labels": {
+                    "instance": "c1:9100",
+                    "job": "node_exporter"
+                },
+                "scrapePool": "node_exporter",
+                "scrapeUrl": "http://c1:9100/metrics",
+                "globalUrl": "http://c1:9100/metrics",
+                "lastError": "",
+                "lastScrape": "2026-03-28T14:04:36.34556655Z",
+                "lastScrapeDuration": 0.012432333,
+                "health": "up",
+                "scrapeInterval": "15s",
+                "scrapeTimeout": "10s"
+            },
+            {
+                "discoveredLabels": {
+                    "__address__": "c2:9100",
+                    "__metrics_path__": "/metrics",
+                    "__scheme__": "http",
+                    "__scrape_interval__": "15s",
+                    "__scrape_timeout__": "10s",
+                    "job": "node_exporter"
+                },
+                "labels": {
+                    "instance": "c2:9100",
+                    "job": "node_exporter"
+                },
+                "scrapePool": "node_exporter",
+                "scrapeUrl": "http://c2:9100/metrics",
+                "globalUrl": "http://c2:9100/metrics",
+                "lastError": "",
+                "lastScrape": "2026-03-28T14:04:40.00365226Z",
+                "lastScrapeDuration": 0.013563125,
+                "health": "up",
+                "scrapeInterval": "15s",
+                "scrapeTimeout": "10s"
+            }
+        ],
+        "droppedTargets": [],
+        "droppedTargetCounts": {
+            "node_exporter": 0
+        }
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "labels": {
+                "alertname": "MemoryLow",
+                "instance": "c2:9100",
+                "job": "node_exporter",
+                "severity": "warning"
+            },
+            "annotations": {
+                "description": "M\u00e9moire disponible : 6.657978057861328 GB",
+                "summary": "M\u00e9moire faible sur c2:9100"
+            },
+            "startsAt": "2026-03-28T13:45:48.79Z",
+            "endsAt": "2026-03-28T14:07:48.79Z",
+            "generatorURL": "http://slurmctld:9090/graph?g0.expr=node_memory_MemAvailable_bytes+%2F+1024+%2F+1024+%2F+1024+%3C+8&g0.tab=1",
+            "status": {
+                "state": "active",
+                "silencedBy": null,
+                "inhibitedBy": null
+            },
+            "receivers": [
+                "webhook"
+            ],
+            "fingerprint": "12757c6c97607349"
+        },
+        {
+            "labels": {
+                "alertname": "MemoryLow",
+                "instance": "c1:9100",
+                "job": "node_exporter",
+                "severity": "warning"
+            },
+            "annotations": {
+                "description": "M\u00e9moire disponible : 6.661914825439453 GB",
+                "summary": "M\u00e9moire faible sur c1:9100"
+            },
+            "startsAt": "2026-03-28T13:45:48.79Z",
+            "endsAt": "2026-03-28T14:07:48.79Z",
+            "generatorURL": "http://slurmctld:9090/graph?g0.expr=node_memory_MemAvailable_bytes+%2F+1024+%2F+1024+%2F+1024+%3C+8&g0.tab=1",
+            "status": {
+                "state": "active",
+                "silencedBy": null,
+                "inhibitedBy": null
+            },
+            "receivers": [
+                "webhook"
+            ],
+            "fingerprint": "ef17fea597b08b9a"
+        }
+    ]
+}
