@@ -1,0 +1,19 @@
+{
+  "incident": "2b",
+  "titre": "Lustre FSx — saturation inodes MDT",
+  "symptome": "Impossible de créer de nouveaux fichiers même si lfs df -h montre de l'espace disponible",
+  "cause": "MDT saturé en inodes — trop de petits fichiers créés",
+  "commande_diagnostic": [
+    "lfs df -i /lustre"
+  ],
+  "ce_quon_voit": "IUse% proche de 100% sur MDT0000, IFree proche de 0",
+  "reparation": [
+    "Identifier le propriétaire : find /lustre -type f | xargs ls -la | awk '{print $3}' | sort | uniq -c | sort -rn",
+    "Vérifier l'âge : find /lustre -type f -atime +30 (non accédés depuis 30 jours)",
+    "Contacter le propriétaire avant toute suppression",
+    "Archiver sur stockage froid si doute, puis supprimer",
+    "Vérifier avec lfs df -i que les inodes sont libérés"
+  ],
+  "comment_provoquer": "for i in $(seq 1 1000000); do touch /lustre/inode-test/file_$i; done",
+  "note": "MDT = 6.3M inodes sur FSx SCRATCH_2 1.2TB — 1000 fichiers/sec sur t3.micro = 1h45 pour saturer"
+}
