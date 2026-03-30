@@ -10,7 +10,7 @@ Cluster HPC opérationnel déployé en trois environnements progressifs.
 | Troubleshooting — OOM, TIMEOUT, échecs silencieux | Docker | ✅ |
 | AWS ParallelCluster — Slurm + Lustre FSx + EFA | AWS | ✅ |
 | Monitoring — Prometheus + Alertmanager + Grafana | Docker | ✅ |
-| War Games — incidents provoqués et documentés | AWS | 🔄 |
+| War Games — incidents provoqués et documentés | AWS | ✅ |
 
 ## Lancer le cluster Docker
 ```bash
@@ -59,3 +59,6 @@ c1, c2      → nœuds de calcul (slurmd + node_exporter)
 - [`docs/screenshots/alert_firing.png`](docs/screenshots/alert_firing.png) — alerte MemoryLow firing
 - [`docs/screenshots/prometheus_targets.json`](docs/screenshots/prometheus_targets.json) — c1 et c2 health:up
 - [`docs/screenshots/alertmanager_active.json`](docs/screenshots/alertmanager_active.json) — alerte reçue par Alertmanager
+- [`aws-parallelcluster/incident1.json`](aws-parallelcluster/incident1.json) — MPI dégradé sur TCP (BTL diagnostic)
+- [`aws-parallelcluster/incident2.json`](aws-parallelcluster/incident2.json) — Lustre FSx saturé (lfs df -h)
+- [`aws-parallelcluster/incident3.json`](aws-parallelcluster/incident3.json) — slurmctld crash et recovery
