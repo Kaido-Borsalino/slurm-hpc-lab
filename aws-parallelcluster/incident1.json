@@ -1,0 +1,11 @@
+{
+  "incident": 1,
+  "titre": "MPI dégradé sur TCP",
+  "symptome": "Job MPI lent, 10x moins de performance que prévu",
+  "cause": "BTL forcé sur tcp,self — ofi (libfabric) éliminé",
+  "commande_diagnostic": "mpirun --mca btl_base_verbose 30 -np 2 ./programme",
+  "ce_quon_voit": "BTL ofi absent des logs, seuls self et tcp chargés",
+  "reparation": "Retirer --mca btl tcp,self, laisser MPI sélectionner ofi automatiquement",
+  "btl_normal": ["ofi", "self", "tcp"],
+  "btl_degrade": ["self", "tcp"]
+}

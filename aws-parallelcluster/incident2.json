@@ -1,0 +1,19 @@
+{
+  "incident": 2,
+  "titre": "Lustre FSx saturé",
+  "symptome": "Jobs en échec, erreur 'No space left on device'",
+  "cause": "OST plein — fichiers temporaires de jobs non nettoyés",
+  "commande_diagnostic": [
+    "lfs df -h /lustre",
+    "lfs df -i /lustre",
+    "du -sh /lustre/* | sort -rh | head -20"
+  ],
+  "ce_quon_voit": "OST Use% proche de 100%, Available proche de 0",
+  "reparation": [
+    "Identifier les gros fichiers avec du -sh",
+    "rm des fichiers temporaires inutiles",
+    "Mettre la queue en pause pendant la réparation",
+    "Vérifier la libération avec lfs df -h"
+  ],
+  "prevention": "lfs setquota par utilisateur pour éviter monopolisation"
+}

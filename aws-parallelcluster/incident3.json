@@ -1,0 +1,19 @@
+{
+  "incident": 3,
+  "titre": "slurmctld crash et recovery",
+  "symptome": "sbatch: Unable to contact slurm controller",
+  "cause": "slurmctld tombe — head node ou processus mort",
+  "commande_diagnostic": [
+    "scontrol ping",
+    "systemctl status slurmctld",
+    "tail -100 /var/log/slurmctld.log"
+  ],
+  "ce_quon_voit": "Slurmctld(primary) is DOWN, sbatch en erreur",
+  "reparation": [
+    "systemctl restart slurmctld",
+    "scontrol ping — vérifier UP",
+    "scontrol show nodes — vérifier état des noeuds"
+  ],
+  "comportement_jobs_en_cours": "Continuent de tourner sur slurmd — slurmd est autonome",
+  "note": "POWERED_DOWN = normal sur AWS ParallelCluster, noeuds s'allument à la demande"
+}
