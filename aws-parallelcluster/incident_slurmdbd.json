@@ -1,0 +1,15 @@
+{
+  "incident": "SLURMDBD_CRASH",
+  "titre": "slurmdbd crash — comptabilité Slurm perdue",
+  "symptome": "sacct ne répond plus, erreurs accounting dans /var/log/slurmctld.log",
+  "cause": "slurmdbd tombe — daemon intermédiaire entre slurmctld et MariaDB",
+  "commande_diagnostic": [
+    "systemctl status slurmdbd",
+    "tail -100 /var/log/slurmdbd.log",
+    "sacct — timeout ou erreur si slurmdbd down"
+  ],
+  "ce_quon_voit": "slurmdbd inactive/dead, sacct inaccessible",
+  "reparation": "systemctl restart slurmdbd",
+  "impact": "Jobs continuent de tourner — seule la comptabilité est perdue",
+  "note": "slurmdbd non déployé par défaut sur ParallelCluster sans bloc Database dans la config"
+}

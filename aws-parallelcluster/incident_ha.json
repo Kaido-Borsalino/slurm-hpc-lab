@@ -1,0 +1,14 @@
+{
+  "incident": "SLURMCTLD_HA",
+  "titre": "slurmctld High Availability",
+  "concept": "Primary slurmctld + Backup slurmctld sur deux head nodes distincts",
+  "fonctionnement": "Backup surveille le primary. Si primary tombe, backup prend le relai automatiquement.",
+  "prerequis": [
+    "Deux head nodes",
+    "Filesystem partagé entre les deux (NFS ou GPFS) pour le state file",
+    "SlurmctldHost=primary et SlurmctldHost=backup dans slurm.conf"
+  ],
+  "commande_verifier_primaire": "scontrol ping — retourne primary ou backup actif",
+  "note_parallelcluster": "HA non disponible sur config ParallelCluster simple — nécessite architecture avancée",
+  "pourquoi_critique": "Sans HA, un crash slurmctld = cluster inutilisable jusqu'à restart manuel"
+}

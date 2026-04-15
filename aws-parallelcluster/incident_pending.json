@@ -1,0 +1,15 @@
+{
+  "incident": "PENDING_INFINI",
+  "titre": "Jobs bloqués en PENDING infini",
+  "symptome": "Jobs en PENDING avec Reason=PartitionDown ou ReqNodeNotAvail",
+  "cause": "Partition mise en état DOWN — aucun job ne peut démarrer",
+  "commande_diagnostic": [
+    "squeue — voir état et raison des jobs",
+    "scontrol show job <id> — voir Reason=PartitionDown",
+    "sinfo — voir partition en état down"
+  ],
+  "ce_quon_voit": "JobState=PENDING Reason=PartitionDown, partition AVAIL=down",
+  "reparation": "scontrol update partition=queue1 state=up",
+  "note_parallelcluster": "DRAIN sur nœuds cloud est contourné automatiquement par ParallelCluster — utiliser partition down pour simuler PENDING infini fiable",
+  "commande_provoquer": "scontrol update partition=queue1 state=down"
+}

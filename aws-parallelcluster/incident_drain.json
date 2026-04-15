@@ -1,0 +1,15 @@
+{
+  "incident": "DRAIN_DOWN",
+  "titre": "Nœud en DRAIN — maintenance planifiée",
+  "symptome": "Job en PENDING avec raison: Nodes required for job are DOWN, DRAINED",
+  "cause": "Nœud mis en DRAIN manuellement pour maintenance",
+  "commande_diagnostic": [
+    "sinfo — voir état des nœuds",
+    "sinfo -R — voir la raison du DRAIN avec timestamp et auteur",
+    "scontrol show job <id> — voir raison PENDING du job"
+  ],
+  "reparation": "sudo scontrol update nodename=NODE state=resume",
+  "difference_drain_down": "DRAIN = maintenance gracieuse, jobs en cours finissent. DOWN = panne, nœud mort.",
+  "commande_drain": "sudo scontrol update nodename=NODE state=drain reason='raison obligatoire'",
+  "note_parallelcluster": "Sur ParallelCluster, DRAIN est contourné automatiquement — utiliser partition down pour PENDING infini fiable"
+}
